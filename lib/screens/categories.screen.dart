@@ -17,13 +17,16 @@ class Categories extends StatelessWidget {
           ),
         ),
       ),
-      body: GridView(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 20,
-            crossAxisSpacing: 20,
-            childAspectRatio: 5 / 4),
-        children: [...availableCategories.map((e) => CategoryItem(item: e))],
+      body: Container(
+        margin: const EdgeInsets.only(top: 16),
+        child: GridView(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 20,
+              crossAxisSpacing: 20,
+              childAspectRatio: 5 / 4),
+          children: [...availableCategories.map((e) => CategoryItem(item: e))],
+        ),
       ),
     );
   }

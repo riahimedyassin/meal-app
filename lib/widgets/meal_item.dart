@@ -23,9 +23,8 @@ class MealItem extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-            return MealDetails(meal: meal);
-          }));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (ctx) => MealDetails(meal: meal)));
         },
         child: Column(
           children: [

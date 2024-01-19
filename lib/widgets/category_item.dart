@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/data/dummy_data.dart';
 import 'package:meal_app/models/category.dart';
+import 'package:meal_app/models/meal.dart';
 import 'package:meal_app/screens/meals.screen.dart';
 
 class CategoryItem extends StatelessWidget {
-  const CategoryItem({required this.item, super.key});
+  const CategoryItem({required this.item, required this.toggleMeal, super.key});
   final Category item;
+  final void Function(Meal) toggleMeal;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-          final filteredMeals = dummyMeals.where((element) => element.categories.contains(item.id)).toList() ; 
-          return Meals(title: item.title,meals: filteredMeals,);
+          final filteredMeals = dummyMeals
+              .where((element) => element.categories.contains(item.id))
+              .toList();
+          return Meals(
+            title: item.title,
+            meals: filteredMeals,
+            toggleFavortie: toggleMeal,
+          );
         }));
       },
       splashColor: Theme.of(context).colorScheme.primary,

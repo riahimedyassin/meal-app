@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meal_app/data/dummy_data.dart';
+import 'package:meal_app/models/meal.dart';
 import 'package:meal_app/widgets/category_item.dart';
 
 class Categories extends StatelessWidget {
-  const Categories({super.key});
+  const Categories({required this.toggleMeal, super.key});
+  final void Function(Meal) toggleMeal;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,12 @@ class Categories extends StatelessWidget {
               mainAxisSpacing: 20,
               crossAxisSpacing: 20,
               childAspectRatio: 5 / 4),
-          children: [...availableCategories.map((e) => CategoryItem(item: e))],
+          children: [
+            ...availableCategories.map((e) => CategoryItem(
+                  item: e,
+                  toggleMeal: toggleMeal,
+                ))
+          ],
         ),
       ),
     );

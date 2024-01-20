@@ -15,7 +15,9 @@ final theme = ThemeData(
     ),
   ),
   textTheme: TextTheme(
-    titleLarge: GoogleFonts.poppins(),
+    titleLarge: GoogleFonts.poppins(
+      fontSize: 28
+    ),
     bodyMedium: GoogleFonts.poppins(),
     bodySmall: GoogleFonts.poppins()
   ),

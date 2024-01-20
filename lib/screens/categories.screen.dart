@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meal_app/data/dummy_data.dart';
 import 'package:meal_app/models/meal.dart';
 import 'package:meal_app/widgets/category_item.dart';
+import 'package:meal_app/widgets/main_drawer.dart';
 
 class Categories extends StatelessWidget {
   const Categories({required this.toggleMeal, super.key});
@@ -19,6 +20,7 @@ class Categories extends StatelessWidget {
           ),
         ),
       ),
+      drawer: const MainDrawer(),
       body: Container(
         margin: const EdgeInsets.only(top: 16),
         child: GridView(

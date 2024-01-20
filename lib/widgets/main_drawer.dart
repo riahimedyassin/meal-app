@@ -1,9 +1,25 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:meal_app/screens/filters.screen.dart';
 import 'package:meal_app/screens/tabs.screen.dart';
 
-class MainDrawer extends StatelessWidget {
+class MainDrawer extends StatefulWidget {
   const MainDrawer({super.key});
+
+  @override
+  State<MainDrawer> createState() => _MainDrawerState();
+}
+
+Map<Filter, bool> initalFilter = {
+  Filter.gluten: false,
+  Filter.lactose: false,
+  Filter.vegan: false,
+  Filter.vegertarian: false,
+};
+
+class _MainDrawerState extends State<MainDrawer> {
+  var _selectedFilter = initalFilter;
 
   @override
   Widget build(BuildContext context) {
@@ -44,31 +60,40 @@ class MainDrawer extends StatelessWidget {
           ListTile(
             onTap: () {
               Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (ctx) => const Tabs()));
+                context,
+                MaterialPageRoute(
+                  builder: (ctx) => Tabs(),
+                ),
+              );
             },
             leading: const Icon(Icons.food_bank),
-            title: Text("Meals",
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .copyWith(color: colorShema.primary)),
+            title: Text(
+              "Meals",
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge!
+                  .copyWith(color: colorShema.primary),
+            ),
           ),
           ListTile(
             onTap: () {
               Navigator.pop(context);
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (ctx) => const Filters(),
+                  builder: (ctx) => Filters(_selectedFilter),
                 ),
-              );
+              ).then((value) =>
+                  setState(() => _selectedFilter = value ?? initalFilter));
             },
             leading: const Icon(Icons.settings),
-            title: Text("Filters",
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .copyWith(color: colorShema.primary)),
+            title: Text(
+              "Filters",
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge!
+                  .copyWith(color: colorShema.primary),
+            ),
           )
         ],
       ),

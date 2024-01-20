@@ -1,9 +1,8 @@
-import 'dart:developer';
+
 
 import 'package:flutter/material.dart';
 import 'package:meal_app/models/meal.dart';
 import 'package:meal_app/screens/categories.screen.dart';
-import 'package:meal_app/screens/filters.screen.dart';
 import 'package:meal_app/screens/meals.screen.dart';
 
 class Tabs extends StatefulWidget {

@@ -1,9 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:meal_app/models/category.dart';
 import 'package:meal_app/models/meal.dart';
-import 'package:meal_app/screens/meal_details.screen.dart';
 import 'package:meal_app/widgets/meal_item.dart';
 
 class Meals extends StatefulWidget {

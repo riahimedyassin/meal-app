@@ -19,6 +19,9 @@ final theme = ThemeData(
       fontSize: 28
     ),
     bodyMedium: GoogleFonts.poppins(),
-    bodySmall: GoogleFonts.poppins()
+    bodySmall: GoogleFonts.poppins(),
+    titleMedium: GoogleFonts.poppins(
+      fontSize: 20
+    )
   ),
 );

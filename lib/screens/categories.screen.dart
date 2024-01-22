@@ -1,14 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meal_app/data/dummy_data.dart';
+import 'package:meal_app/providers/filters.provider.dart';
 import 'package:meal_app/widgets/category_item.dart';
 import 'package:meal_app/widgets/main_drawer.dart';
 
-class Categories extends StatelessWidget {
+class Categories extends ConsumerWidget {
   const Categories( {super.key});
 
-
+  
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final filters = ref.watch(filterProvider) ; 
+    log(filters.toString()); 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,

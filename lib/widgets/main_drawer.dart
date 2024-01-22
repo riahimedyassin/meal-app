@@ -1,14 +1,14 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meal_app/providers/filters.provider.dart';
 import 'package:meal_app/screens/filters.screen.dart';
 import 'package:meal_app/screens/tabs.screen.dart';
 
-class MainDrawer extends StatefulWidget {
+class MainDrawer extends ConsumerStatefulWidget {
   const MainDrawer({super.key});
 
   @override
-  State<MainDrawer> createState() => _MainDrawerState();
+  ConsumerState<MainDrawer> createState() => _MainDrawerState();
 }
 
 Map<Filter, bool> initalFilter = {
@@ -18,11 +18,10 @@ Map<Filter, bool> initalFilter = {
   Filter.vegertarian: false,
 };
 
-class _MainDrawerState extends State<MainDrawer> {
-  var _selectedFilter = initalFilter;
-
+class _MainDrawerState extends ConsumerState<MainDrawer> {
   @override
   Widget build(BuildContext context) {
+    var _selectedFilter = ref.watch(filterProvider);
     final colorShema = Theme.of(context).colorScheme;
     return Drawer(
       child: Column(
@@ -81,10 +80,9 @@ class _MainDrawerState extends State<MainDrawer> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (ctx) => Filters(_selectedFilter),
+                  builder: (ctx) => const Filters(),
                 ),
-              ).then((value) =>
-                  setState(() => _selectedFilter = value ?? initalFilter));
+              );
             },
             leading: const Icon(Icons.settings),
             title: Text(

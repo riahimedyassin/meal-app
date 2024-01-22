@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meal_app/models/meal.dart';
@@ -17,7 +15,6 @@ class Tabs extends ConsumerStatefulWidget {
 class _TabsState extends ConsumerState<Tabs> {
   int _selectedPageIndex = 0;
 
-
   void _selectPage(int index) {
     setState(() {
       _selectedPageIndex = index;
@@ -33,17 +30,14 @@ class _TabsState extends ConsumerState<Tabs> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
-    final List<Meal> favoriteMeal = ref.watch(favoriteMealsProvider); 
-    Widget activePage = Categories(
-    );
+    final List<Meal> favoriteMeal = ref.watch(favoriteMealsProvider);
+    Widget activePage = const Categories();
     if (_selectedPageIndex == 1) {
       activePage = Meals(
         meals: favoriteMeal,
         title: "Favorite",
-       
       );
     }
     return Scaffold(

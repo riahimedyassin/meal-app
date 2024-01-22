@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meal_app/models/meal.dart';
+import 'package:meal_app/providers/filters.provider.dart';
 import 'package:meal_app/widgets/meal_item.dart';
 
-class Meals extends StatefulWidget {
+class Meals extends ConsumerStatefulWidget {
   Meals({
     required this.meals,
     required this.title,
@@ -13,12 +15,15 @@ class Meals extends StatefulWidget {
   int gridCount = 1;
 
   @override
-  State<Meals> createState() => _MealsState();
+  ConsumerState<Meals> createState() => _MealsState();
 }
 
-class _MealsState extends State<Meals> {
+class _MealsState extends ConsumerState<Meals> {
   @override
   Widget build(BuildContext context) {
+    final filteredMeals = ref.read(filterProvider.notifier).filteredMeals(
+          widget.meals,
+        );
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -40,7 +45,7 @@ class _MealsState extends State<Meals> {
         ),
         padding: const EdgeInsets.all(16),
         children: [
-          for (var item in widget.meals)
+          for (var item in filteredMeals)
             MealItem(
               meal: item,
             )

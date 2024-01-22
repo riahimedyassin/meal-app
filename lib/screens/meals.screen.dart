@@ -6,12 +6,10 @@ class Meals extends StatefulWidget {
   Meals({
     required this.meals,
     required this.title,
-    required this.toggleFavortie,
     super.key,
   });
   final String title;
   final List<Meal> meals;
-  final void Function(Meal) toggleFavortie;
   int gridCount = 1;
 
   @override
@@ -45,7 +43,6 @@ class _MealsState extends State<Meals> {
           for (var item in widget.meals)
             MealItem(
               meal: item,
-              toggleMeal: widget.toggleFavortie,
             )
         ],
       ),

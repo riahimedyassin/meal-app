@@ -1,32 +1,22 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meal_app/models/meal.dart';
+import 'package:meal_app/providers/favorite.provider.dart';
 import 'package:meal_app/screens/categories.screen.dart';
 import 'package:meal_app/screens/meals.screen.dart';
 
-class Tabs extends StatefulWidget {
+class Tabs extends ConsumerStatefulWidget {
   const Tabs({super.key});
 
   @override
-  State<Tabs> createState() => _TabsState();
+  ConsumerState<Tabs> createState() => _TabsState();
 }
 
-class _TabsState extends State<Tabs> {
+class _TabsState extends ConsumerState<Tabs> {
   int _selectedPageIndex = 0;
-  final List<Meal> _favoriteList = [];
 
-  void _toggleMeal(Meal m) {
-    setState(() {
-      if (_favoriteList.contains(m)) {
-        _favoriteList.remove(m);
-        _showSnackBar("Removed from favorite");
-      } else {
-        _favoriteList.add(m);
-        _showSnackBar("Added to favorite");
-      }
-    });
-  }
 
   void _selectPage(int index) {
     setState(() {
@@ -46,14 +36,14 @@ class _TabsState extends State<Tabs> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Meal> favoriteMeal = ref.watch(favoriteMealsProvider); 
     Widget activePage = Categories(
-      toggleMeal: _toggleMeal,
     );
     if (_selectedPageIndex == 1) {
       activePage = Meals(
-        meals: _favoriteList,
+        meals: favoriteMeal,
         title: "Favorite",
-        toggleFavortie: _toggleMeal,
+       
       );
     }
     return Scaffold(

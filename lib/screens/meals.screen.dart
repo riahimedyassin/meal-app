@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meal_app/models/meal.dart';
-import 'package:meal_app/providers/filters.provider.dart';
+import 'package:meal_app/providers/available_meals.provider.dart';
 import 'package:meal_app/widgets/meal_item.dart';
 
 class Meals extends ConsumerStatefulWidget {
@@ -21,9 +21,7 @@ class Meals extends ConsumerStatefulWidget {
 class _MealsState extends ConsumerState<Meals> {
   @override
   Widget build(BuildContext context) {
-    final filteredMeals = ref.read(filterProvider.notifier).filteredMeals(
-          widget.meals,
-        );
+    final filteredMeals = widget.meals;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),

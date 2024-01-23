@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meal_app/models/category.dart';
+import 'package:meal_app/providers/available_meals.provider.dart';
 import 'package:meal_app/providers/meals.provider.dart';
 import 'package:meal_app/screens/meals.screen.dart';
 
@@ -15,7 +16,7 @@ class CategoryItem extends ConsumerStatefulWidget {
 class _CategoryItemState extends ConsumerState<CategoryItem> {
   @override
   Widget build(BuildContext context) {
-    final meals = ref.watch(mealsProvider);
+    final meals = ref.watch(availableMealsProvider);
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {

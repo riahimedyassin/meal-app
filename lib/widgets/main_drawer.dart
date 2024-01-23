@@ -21,7 +21,6 @@ Map<Filter, bool> initalFilter = {
 class _MainDrawerState extends ConsumerState<MainDrawer> {
   @override
   Widget build(BuildContext context) {
-    var _selectedFilter = ref.watch(filterProvider);
     final colorShema = Theme.of(context).colorScheme;
     return Drawer(
       child: Column(

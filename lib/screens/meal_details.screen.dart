@@ -9,14 +9,18 @@ class MealDetails extends ConsumerWidget {
     super.key,
   });
   final Meal meal;
-  void _showMessage(BuildContext ctx ,  bool added) {
-    String message = added ? "Meal added to your favorite" : "Meal delted from your favorite" ; 
-    SnackBar snackBar = SnackBar(content: Text(message) ); 
-    ScaffoldMessenger.of(ctx).clearSnackBars(); 
-    ScaffoldMessenger.of(ctx).showSnackBar(snackBar); 
+  void _showMessage(BuildContext ctx, bool added) {
+    String message = added
+        ? "Meal added to your favorite"
+        : "Meal delted from your favorite";
+    SnackBar snackBar = SnackBar(content: Text(message));
+    ScaffoldMessenger.of(ctx).clearSnackBars();
+    ScaffoldMessenger.of(ctx).showSnackBar(snackBar);
   }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final exist = ref.watch(favoriteMealsProvider).contains(meal);
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
@@ -24,10 +28,11 @@ class MealDetails extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: () {
-                bool added = ref.read(favoriteMealsProvider.notifier).toggleMeal(meal);
-                _showMessage(context,added); 
-            } ,
-            icon: const Icon(Icons.favorite),
+              bool added =
+                  ref.read(favoriteMealsProvider.notifier).toggleMeal(meal);
+              _showMessage(context, added);
+            },
+            icon: Icon(exist ? Icons.favorite : Icons.favorite_border),
           ),
         ],
       ),
